@@ -56,3 +56,24 @@ ON (e.emp_no = t.emp_no)
 WHERE (de.to_date = '9999-01-01')
 AND (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 ORDER BY e.emp_no;
+
+-- Query current employees who were born between January 1, 1965 and December 31, 1965 to create a mentorship eligibility table who were born between January 1, 1965 and December 31, 1965 and excludes senior level employees.
+
+SELECT DISTINCT ON (emp_no) e.emp_no,
+	e.first_name,
+	e.last_name,
+	e.birth_date,
+	de.from_date,
+	de.to_date,
+	t.title
+INTO current_mentorship_eligibility
+FROM employees as e
+INNER JOIN dept_emp as de
+ON (e.emp_no = de.emp_no)
+INNER JOIN titles as t
+ON (e.emp_no = t.emp_no)
+WHERE (de.to_date = '9999-01-01')
+AND (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
+AND (t.title <> 'Senior Staff')
+AND (t.title <> 'Senior Engineer')
+ORDER BY e.emp_no;
