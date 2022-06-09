@@ -26,23 +26,6 @@ Based on all of the current employees reaching retirement eligibility there are 
 
 Electing to implement a mentorship program could be a good route to go to prepare the current employee pool for future advancement. Currently there are just enough employees in senior fields to cover one on one mentorship of the non senior level employees. Going one step further with the analysis of current employees eligible for mentorship all employees in current senior roles have been excluded utilizing the following query. 
 
-SELECT DISTINCT ON (emp_no) e.emp_no,
-	e.first_name,
-	e.last_name,
-	e.birth_date,
-	de.from_date,
-	de.to_date,
-	t.title
-INTO current_mentorship_eligibility
-FROM employees as e
-INNER JOIN dept_emp as de
-ON (e.emp_no = de.emp_no)
-INNER JOIN titles as t
-ON (e.emp_no = t.emp_no)
-WHERE (de.to_date = '9999-01-01')
-AND (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
-AND (t.title <> 'Senior Staff')
-AND (t.title <> 'Senior Engineer')
-ORDER BY e.emp_no;
+<img width="540" alt="image" src="https://user-images.githubusercontent.com/102195085/172962768-6116ce0a-88fc-4b72-a2fe-da26e5797b74.png">
 
 <img width="781" alt="Current_Mentorship_eligibility" src="https://user-images.githubusercontent.com/102195085/172962530-b6fa165b-2259-4196-9031-52710b0cc162.png">
